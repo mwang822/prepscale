@@ -1,0 +1,471 @@
+{
+  "dashConversion": {
+    "dashes": 70,
+    "oz": 0.25
+  },
+  "recipes": [
+    {
+      "name": "Tea & Sympathy",
+      "cocktail": "Tea & Sympathy",
+      "type": "batch",
+      "ingredients": [
+        [
+          "Beefeater",
+          1.25,
+          "oz"
+        ],
+        [
+          "Guilder’s Oolong Gin",
+          0.25,
+          "oz"
+        ]
+      ],
+      "instructions": "Combine ingredients and batch. Chill before service."
+    },
+    {
+      "name": "Ink & Petal",
+      "cocktail": "Ink & Petal",
+      "type": "batch",
+      "ingredients": [
+        [
+          "No. 3 Gin",
+          1.75,
+          "oz"
+        ],
+        [
+          "Soka",
+          0.5,
+          "oz"
+        ],
+        [
+          "Empirical Cilantro",
+          0.25,
+          "oz"
+        ],
+        [
+          "Mancino Dry",
+          0.25,
+          "oz"
+        ],
+        [
+          "Mancino White Vermouth",
+          0.25,
+          "oz"
+        ],
+        [
+          "Pickled Ginger Juice",
+          0.2,
+          "oz"
+        ]
+      ],
+      "instructions": "Combine ingredients and batch. Black garlic oil is a garnish, not a batch-volume ingredient."
+    },
+    {
+      "name": "Echoes of Summer",
+      "cocktail": "Summer Echoes",
+      "type": "batch",
+      "ingredients": [
+        [
+          "Viamundi Tequila",
+          0.5,
+          "oz"
+        ],
+        [
+          "Pueblo Viejo Tequila",
+          0.5,
+          "oz"
+        ],
+        [
+          "Amaras Cupreata Mezcal",
+          0.5,
+          "oz"
+        ]
+      ],
+      "instructions": "Combine the spirits and batch. Clarified Guava Cordial is a separate prep component."
+    },
+    {
+      "name": "Brown & Buttered",
+      "cocktail": "Brown & Buttered",
+      "type": "batch",
+      "ingredients": [
+        [
+          "Bourbon",
+          1.5,
+          "oz"
+        ],
+        [
+          "Appleton 8",
+          0.5,
+          "oz"
+        ],
+        [
+          "Oloroso Sherry",
+          0.25,
+          "oz"
+        ],
+        [
+          "Demerara",
+          0.15,
+          "oz"
+        ],
+        [
+          "Mr Black Coffee",
+          0.25,
+          "oz"
+        ],
+        [
+          "Saline",
+          2,
+          "dashes"
+        ],
+        [
+          "Chicory Coffee Bitters",
+          2,
+          "dashes"
+        ]
+      ],
+      "instructions": "Combine and batch. Saline and bitters are measured by dash; standard dash conversion in this app is 70 dashes = 0.25 oz."
+    },
+    {
+      "name": "Clarified Browned Buttermilk",
+      "cocktail": "Brown & Buttered",
+      "type": "prep",
+      "ingredients": [
+        [
+          "Unsalted Butter",
+          454,
+          "g"
+        ],
+        [
+          "Whole Milk Powder",
+          80,
+          "g"
+        ],
+        [
+          "Whole Milk",
+          1400,
+          "ml"
+        ]
+      ],
+      "instructions": "Brown butter over medium heat until deeply golden and nutty. Lower heat; add milk powder and whisk 30–60 sec until toasted. Slowly whisk in milk. Gently simmer 2–3 min without a hard boil. Immersion blend 1–2 min. Cool to 65–75°F / 18–24°C. Fine with your established Kieselsol → Chitosan → Kieselsol process, then run through the Spinzall. Exact fining dosage is not specified here."
+    },
+    {
+      "name": "Salted Duck Egg Foam",
+      "cocktail": "Brown & Buttered",
+      "type": "prep",
+      "ingredients": [
+        [
+          "Buttermilk",
+          1,
+          "portion"
+        ],
+        [
+          "Dulce de Leche",
+          1,
+          "portion"
+        ],
+        [
+          "Heavy Cream",
+          1,
+          "portion"
+        ],
+        [
+          "Salted Duck Egg Yolk",
+          1,
+          "portion"
+        ],
+        [
+          "Chinkiang Vinegar",
+          1,
+          "portion"
+        ]
+      ],
+      "instructions": "Production quantities were not supplied in the current recipe source, so this entry is kept as a recipe placeholder rather than a numeric scaling formula."
+    },
+    {
+      "name": "Baijiu By The Bayou",
+      "cocktail": "Baijiu By The Bayou",
+      "type": "batch",
+      "default_basis": {
+        "ingredient": "Washed Rye",
+        "amount": 750,
+        "unit": "ml"
+      },
+      "ingredients": [
+        [
+          "Washed Rye",
+          1.5,
+          "oz"
+        ],
+        [
+          "Martell VS Cognac",
+          0.5,
+          "oz"
+        ],
+        [
+          "Baijiu",
+          0.25,
+          "oz"
+        ],
+        [
+          "Demerara Syrup",
+          0.15,
+          "oz"
+        ],
+        [
+          "Peychaud’s Bitters",
+          5,
+          "dashes"
+        ]
+      ],
+      "instructions": "Combine and batch. Standard dash conversion in this app is 70 dashes = 0.25 oz."
+    },
+    {
+      "name": "Shiitake-Ghee Washed Rye",
+      "cocktail": "Baijiu By The Bayou",
+      "type": "prep",
+      "ingredients": [
+        [
+          "Rye Whiskey",
+          20,
+          "oz"
+        ],
+        [
+          "Ghee",
+          50,
+          "g"
+        ],
+        [
+          "Shiitake",
+          10,
+          "g"
+        ]
+      ],
+      "instructions": "Combine rye, ghee, and shiitake for the established wash process. Chill/freeze, separate the fat, and filter before use."
+    },
+    {
+      "name": "Garden State Adjacent",
+      "cocktail": "Garden State Adjacent",
+      "type": "batch",
+      "ingredients": [
+        [
+          "Hendrick’s Gin",
+          1.5,
+          "oz"
+        ],
+        [
+          "Absinthe",
+          0.25,
+          "oz"
+        ]
+      ],
+      "instructions": "Combine at a 6:1 ratio and mix into the batch jug. The tomato water is a separate prep."
+    },
+    {
+      "name": "Tomato Water",
+      "cocktail": "Garden State Adjacent",
+      "type": "prep",
+      "ingredients": [
+        [
+          "Tomatoes",
+          4130,
+          "g"
+        ],
+        [
+          "English Cucumber",
+          330.4,
+          "g"
+        ],
+        [
+          "Fennel Bulb",
+          103.25,
+          "g"
+        ],
+        [
+          "Kosher Salt",
+          41.3,
+          "g"
+        ]
+      ],
+      "instructions": "Canonical production ratio: cucumber = 8% of tomato weight; fennel = 2.5%; kosher salt = 1%. Clarification enzyme/fining quantities are intentionally not hard-coded here because the supplied canonical ratio did not specify them."
+    },
+    {
+      "name": "Saturday Morning Cartoons",
+      "cocktail": "Saturday Morning Cartoons",
+      "type": "batch",
+      "default_basis": {
+        "ingredient": "Cachaça",
+        "amount": 700,
+        "unit": "ml"
+      },
+      "ingredients": [
+        [
+          "Cachaça",
+          1950,
+          "ml"
+        ],
+        [
+          "Italicus",
+          730,
+          "ml"
+        ],
+        [
+          "Earl Grey Concentrate",
+          975,
+          "ml"
+        ],
+        [
+          "Lemon Juice",
+          415,
+          "ml"
+        ],
+        [
+          "Fruity Pebbles Syrup",
+          634,
+          "g"
+        ],
+        [
+          "Whole Milk",
+          2439,
+          "ml"
+        ]
+      ],
+      "instructions": "Combine all punch ingredients except milk. Warm whole milk to 120–130°F / 50–55°C. Slowly pour punch into milk and gently stir once. Allow coagulation for 30 min. Run through Spinzall; recirculate/second spin if needed. Polish through a coffee filter. No post-clarification saline or vanilla."
+    },
+    {
+      "name": "Earl Grey Concentrate",
+      "cocktail": "Saturday Morning Cartoons",
+      "type": "prep",
+      "ingredients": [
+        [
+          "Water",
+          2000,
+          "g"
+        ],
+        [
+          "Harney & Sons Earl Grey Supreme",
+          40,
+          "g"
+        ]
+      ],
+      "instructions": "Heat water to 195°F / 91°C. Steep exactly 4 minutes. Strain without squeezing and chill rapidly."
+    },
+    {
+      "name": "Fruity Pebbles Syrup",
+      "cocktail": "Saturday Morning Cartoons",
+      "type": "prep",
+      "ingredients": [
+        [
+          "Fruity Pebbles",
+          611,
+          "g"
+        ],
+        [
+          "Water",
+          1222,
+          "g"
+        ],
+        [
+          "White Sugar",
+          1222,
+          "g"
+        ],
+        [
+          "Kosher Salt",
+          2.5,
+          "g"
+        ]
+      ],
+      "instructions": "Combine water and sugar; heat to 160–170°F until dissolved. Remove from heat and add cereal. Hold around 150–160°F for 15 min. Strain without pressing cereal. Fine-filter, add salt, chill, and refrigerate."
+    },
+    {
+      "name": "Pandan Coconut Foam",
+      "cocktail": "Saturday Morning Cartoons",
+      "type": "prep",
+      "ingredients": [
+        [
+          "Simply Asia Coco Milk",
+          13.66,
+          "oz"
+        ],
+        [
+          "Pandan Extract",
+          1.5,
+          "oz"
+        ],
+        [
+          "Demerara",
+          1.0,
+          "oz"
+        ],
+        [
+          "Salt",
+          1,
+          "pinch"
+        ]
+      ],
+      "instructions": "Assemble in a 16 oz whipper. Charge once. Chill before serving."
+    },
+    {
+      "name": "Thyme Out",
+      "cocktail": "Thyme Out",
+      "type": "batch",
+      "ingredients": [
+        [
+          "Wild Turkey",
+          1.5,
+          "oz"
+        ],
+        [
+          "Apricot Liqueur",
+          0.25,
+          "oz"
+        ],
+        [
+          "Cherry Heering",
+          0.1,
+          "oz"
+        ],
+        [
+          "Saline Solution",
+          5,
+          "drops"
+        ]
+      ],
+      "instructions": "Combine and batch. Citrus Thyme Oleo and basil are service components from the menu description, but no numeric production formula was supplied here."
+    },
+    {
+      "name": "Oolong Old Fashioned",
+      "cocktail": "Oolong Old Fashioned",
+      "type": "batch",
+      "ingredients": [
+        [
+          "Toki",
+          2000,
+          "ml"
+        ],
+        [
+          "Oolong Tea",
+          36,
+          "g"
+        ]
+      ],
+      "instructions": "Combine 2,000 ml Toki with 36 g oolong tea using the established infusion process. Scale from either ingredient."
+    }
+  ],
+  "cocktails": [
+    "Tea & Sympathy",
+    "Golden Hour",
+    "Ink & Petal",
+    "Yuzu Enzoni",
+    "Oolong Old Fashioned",
+    "Echoes of Summer",
+    "Brown & Buttered",
+    "Baijiu By The Bayou",
+    "Garden State Adjacent",
+    "Saturday Morning Cartoons",
+    "Thyme Out",
+    "Tang Dynasty"
+  ],
+  "menuSourceNote": "Cocktail names/descriptions were checked against BW_DRINKS MENU_NEW.pdf. Production formulas are only included where established in the recipe source; missing numeric formulas are not invented."
+}

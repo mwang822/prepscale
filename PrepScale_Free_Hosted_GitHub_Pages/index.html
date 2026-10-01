@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#7d1d1d">
+<link rel="manifest" href="./manifest.webmanifest">
+<title>PrepScale</title>
+<style>
+:root{--bg:#f7f1e8;--card:#fffdf8;--ink:#211b17;--muted:#74695f;--red:#7d1d1d;--line:#ded2c3}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,system-ui,sans-serif}
+main{max-width:760px;margin:auto;padding:28px 18px 48px}.brand{font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:var(--red);font-weight:700}
+h1{font-size:38px;line-height:1.05;margin:8px 0 8px}.sub{color:var(--muted);margin-bottom:24px}
+.tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}.tab{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:14px;font-weight:750}.tab.active{background:var(--red);color:#fff;border-color:var(--red)}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px;box-shadow:0 8px 30px #00000008}
+label{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:700}
+.row{display:grid;grid-template-columns:1fr 110px 100px;gap:8px;margin-top:7px}input,select,button{font:inherit}input,select{width:100%;border:1px solid var(--line);border-radius:12px;padding:13px;background:white;color:var(--ink)}
+button{border:0;border-radius:12px;padding:13px 16px;font-weight:750;cursor:pointer}.primary{background:var(--red);color:white;width:100%;margin-top:10px}.secondary{background:#eee5d9;color:var(--ink);width:100%;margin-top:10px}
+.results{margin-top:18px;display:grid;gap:12px}.recipe{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px}.recipe h2{font-size:19px;margin:0 0 3px}.meta{font-size:12px;color:var(--muted);margin-bottom:12px}.ing{display:flex;justify-content:space-between;gap:15px;padding:7px 0;border-bottom:1px solid #eee6dc}.ing:last-child{border-bottom:0}.amt{font-variant-numeric:tabular-nums;font-weight:700;white-space:nowrap}.method{margin-top:13px;color:#51483f;font-size:14px;line-height:1.5}.hint{font-size:12px;color:var(--muted);margin-top:8px}.suggestions{position:relative}.suggestbox{position:absolute;z-index:5;left:0;right:0;top:100%;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 12px 30px #0002}.suggestbox div{padding:11px 13px;border-bottom:1px solid #eee;cursor:pointer}.suggestbox div:last-child{border-bottom:0}.browse{margin-top:24px}.cocktail{padding:12px 0;border-bottom:1px solid var(--line)}.cocktail:last-child{border-bottom:0}.cocktail strong{display:block}.count{color:var(--muted);font-size:13px}.error{color:#9a2222;background:#f9e9e7;padding:12px;border-radius:12px}
+@media(max-width:560px){.row{grid-template-columns:1fr 90px 82px}h1{font-size:34px}}
+</style>
+</head>
+<body>
+<main>
+<div class="brand">PrepScale · Midtown East</div>
+<h1>I HAVE / I NEED</h1>
+<div class="sub">Batch and prep scaling for the Hunan cocktail program.</div>
+<div class="tabs"><button id="haveTab" class="tab active">I HAVE</button><button id="needTab" class="tab">I NEED</button></div>
+<section class="panel">
+<label id="inputLabel">Ingredient I have</label>
+<div class="suggestions"><input id="query" autocomplete="off" placeholder="e.g. tomato, butter, rye, Fruity Pebbles"><div id="suggestions" class="suggestbox" hidden></div></div>
+<div id="amountRow" class="row"><input id="amount" inputmode="decimal" placeholder="Amount"><select id="unit"><option>oz</option><option>ml</option><option>g</option><option>dashes</option><option>drops</option><option>portion</option><option>pinch</option></select></div>
+<button id="go" class="primary">Calculate</button>
+<div class="hint" id="hint">I HAVE finds every numeric recipe containing that ingredient and scales the recipe to your amount.</div>
+</section>
+<div id="results" class="results"></div>
+<section class="browse panel">
+<button id="browseBtn" class="secondary">Browse Cocktails</button>
+<div id="browse" hidden></div>
+</section>
+</main>
+<script>
+let DATA=null, mode="have";
+const $=id=>document.getElementById(id);
+const unitAliases={ounce:"oz",ounces:"oz",oz:"oz",ml:"ml",milliliter:"ml",milliliters:"ml",g:"g",gram:"g",grams:"g",dash:"dashes",dashes:"dashes",drop:"drops",drops:"drops",pinch:"pinch",portion:"portion"};
+function norm(s){return s.toLowerCase().replace(/[’']/g,"").replace(/\s+/g," ").trim()}
+function compatible(a,b){a=unitAliases[norm(a)]||norm(a);b=unitAliases[norm(b)]||norm(b);return a===b || (a==="oz"&&b==="ml") || (a==="ml"&&b==="oz") || (a==="g"&&b==="g")}
+function toBase(v,u){u=unitAliases[norm(u)]||norm(u); if(u==="oz")return v*29.5735;if(u==="ml")return v;return v}
+function fromBase(v,u){u=unitAliases[norm(u)]||norm(u); if(u==="oz")return v/29.5735;if(u==="ml")return v;return v}
+function fmt(n){if(Math.abs(n-Math.round(n))<.0001)return String(Math.round(n));return String(Math.round(n*100)/100)}
+function allTerms(){let s=new Set();DATA.recipes.forEach(r=>r.ingredients.forEach(i=>s.add(i[0])));DATA.recipes.forEach(r=>s.add(r.name));DATA.cocktails.forEach(c=>s.add(c));return [...s]}
+function showSuggestions(){let q=norm($("query").value);if(!q){$("suggestions").hidden=true;return}let arr=allTerms().filter(x=>norm(x).includes(q)).slice(0,8);$("suggestions").innerHTML=arr.map(x=>`<div data-v="${x.replace(/"/g,"&quot;")}">${x}</div>`).join("");$("suggestions").hidden=!arr.length;$("suggestions").querySelectorAll("div").forEach(d=>d.onclick=()=>{$("query").value=d.dataset.v;$("suggestions").hidden=true})}
+function setMode(m){mode=m;$("haveTab").classList.toggle("active",m==="have");$("needTab").classList.toggle("active",m==="need");$("inputLabel").textContent=m==="have"?"Ingredient I have":"Recipe or ingredient I need";$("amountRow").style.display=m==="have"?"grid":"none";$("hint").textContent=m==="have"?"I HAVE finds every numeric recipe containing that ingredient and scales the recipe to your amount.":"I NEED finds a recipe or prep by name or ingredient and shows its established formula."; $("query").placeholder=m==="have"?"e.g. tomato, butter, rye, Fruity Pebbles":"e.g. Tomato Water, Brown & Buttered, Earl Grey"}
+function renderRecipe(r,scale=1,basisNote=""){let html=`<article class="recipe"><h2>${r.name}</h2><div class="meta">${r.type.toUpperCase()} · ${r.cocktail}${basisNote?` · ${basisNote}`:""}</div>`;r.ingredients.forEach(i=>{let v=i[1]*scale;html+=`<div class="ing"><span>${i[0]}</span><span class="amt">${fmt(v)} ${i[2]}</span></div>`});html+=`<div class="method"><strong>Instructions</strong><br>${r.instructions}</div></article>`;return html}
+function calculate(){let q=norm($("query").value);$("results").innerHTML="";if(!q){$("results").innerHTML='<div class="error">Enter an ingredient or recipe.</div>';return}
+if(mode==="need"){let rs=DATA.recipes.filter(r=>norm(r.name).includes(q)||norm(r.cocktail).includes(q)||r.ingredients.some(i=>norm(i[0]).includes(q)));if(!rs.length){$("results").innerHTML='<div class="error">No established recipe found.</div>';return}$("results").innerHTML=rs.map(r=>renderRecipe(r)).join("");return}
+let amount=parseFloat($("amount").value),u=$("unit").value;if(!(amount>0)){ $("results").innerHTML='<div class="error">Enter a positive amount.</div>';return}
+let matches=[];DATA.recipes.forEach(r=>r.ingredients.forEach((i,idx)=>{if(norm(i[0])===q||norm(i[0]).includes(q)||q.includes(norm(i[0]))){if(i[1]>0&&compatible(u,i[2]))matches.push({r,i,idx})}}));
+if(!matches.length){$("results").innerHTML='<div class="error">No numeric recipe uses that ingredient in a compatible unit.</div>';return}
+$("results").innerHTML=matches.map(m=>{let basisBase=toBase(m.i[1],m.i[2]), inputBase=toBase(amount,u), scale=inputBase/basisBase;return renderRecipe(m.r,scale,`Scaled from ${fmt(m.i[1])} ${m.i[2]} ${m.i[0]}`)}).join("")}
+$("query").addEventListener("input",showSuggestions);$("go").onclick=calculate;$("haveTab").onclick=()=>setMode("have");$("needTab").onclick=()=>setMode("need");
+$("query").addEventListener("keydown",e=>{if(e.key==="Enter")calculate()});document.addEventListener("click",e=>{if(!e.target.closest(".suggestions"))$("suggestions").hidden=true});
+$("browseBtn").onclick=()=>{let b=$("browse");b.hidden=!b.hidden;if(!b.hidden){let counts={};DATA.recipes.forEach(r=>counts[r.cocktail]=(counts[r.cocktail]||0)+1);b.innerHTML=DATA.cocktails.map(c=>`<div class="cocktail"><strong>${c}</strong><span class="count">${counts[c]||0} production recipe${counts[c]===1?"":"s"} established</span></div>`).join("")}};
+fetch("./data.json").then(r=>r.json()).then(d=>{DATA=d}).catch(()=>{$("results").innerHTML='<div class="error">Recipe data could not be loaded.</div>'});
+if("serviceWorker" in navigator)navigator.serviceWorker.register("./sw.js");
+</script>
+</body>
+</html>
